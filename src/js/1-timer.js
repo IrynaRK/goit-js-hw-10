@@ -20,6 +20,7 @@ const options = {
       iziToast.error({
         title: 'Error',
         message: 'Please choose a date in the future',
+        position: 'topRight',
       });
       startButton.disabled = true;
     } else {
@@ -28,6 +29,8 @@ const options = {
     }
   },
 };
+
+flatpickr(datetimePicker, options);
 
 startButton.addEventListener('click', () => {
   startButton.disabled = true;
@@ -38,6 +41,7 @@ startButton.addEventListener('click', () => {
     const distance = countdownDate - now;
 
     const { days, hours, minutes, seconds } = convertMs(distance);
+
     document.querySelector('[data-days]').innerText = addLeadingZero(days);
     document.querySelector('[data-hours]').innerText = addLeadingZero(hours);
     document.querySelector('[data-minutes]').innerText =
@@ -47,7 +51,7 @@ startButton.addEventListener('click', () => {
 
     if (distance < 0) {
       clearInterval(x);
-      document.getElementById('timer').innerHTML = 'Таймер завершено!';
+      document.querySelector('timer').innerHTML = 'Таймер завершено!';
       datetimePicker.disabled = false;
       startButton.disabled = true;
     }

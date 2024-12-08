@@ -8,10 +8,21 @@ document.querySelector('.form').addEventListener('submit', event => {
   const state = event.target.state.value;
 
   createPromise(delay, state)
-    .then(message => console.log(`✅ ${message}`))
-    .catch(error => console.log(`❌ ${error}`));
+    .then(message => {
+      iziToast.success({
+        // title: 'Success',
+        message: `✅ ${message}`,
+        position: 'topRight',
+      });
+    })
+    .catch(error => {
+      iziToast.error({
+        // title: 'Error',
+        message: `❌ ${error}`,
+        position: 'topRight',
+      });
+    });
 });
-
 function createPromise(delay, state) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
