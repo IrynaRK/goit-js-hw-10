@@ -42,7 +42,7 @@ startButton.addEventListener('click', () => {
 
     const { days, hours, minutes, seconds } = convertMs(distance);
 
-    if (distance < 0) {
+    if (distance <= 0) {
       clearInterval(x);
       document.querySelector('[data-days]').innerText = '00';
       document.querySelector('[data-hours]').innerText = '00';
